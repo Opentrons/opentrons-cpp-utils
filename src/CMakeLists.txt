@@ -1,8 +1,11 @@
 
+find_package(Boost 1.71.0)
+
 # Configure lintable/nonlintable sources here
 set(CORE_LINTABLE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/fixed_point.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/pid.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/logging.cpp
 )
 set(CORE_NONLINTABLE_SOURCES 
 )
@@ -11,6 +14,10 @@ add_library(core STATIC
     ${CORE_LINTABLE_SOURCES}
     ${CORE_NONLINTABLE_SOURCES}
 )
+
+target_link_libraries(core PUBLIC Boost::boost)
+
+target_compile_definitions(core PUBLIC ENABLE_LOGGING)
 
 set_target_properties(core
   PROPERTIES CXX_STANDARD 20
