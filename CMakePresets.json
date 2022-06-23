@@ -31,10 +31,7 @@
             "configurePreset": "host",
             "jobs": 4,
             "targets": [
-                "lint",
-                "common-lint",
-                "thermocycler-gen2-lint",
-                "tempdeck-gen3-lint"
+                "lint"
             ]
         },
         {
@@ -45,6 +42,16 @@
             "jobs": 4,
             "targets": [
                 "format"
+            ]
+        },
+        {
+            "name": "format-ci",
+            "displayName": "format host",
+            "description": "Runs clang-format on all targets without modifying files",
+            "configurePreset": "host",
+            "jobs": 4,
+            "targets": [
+                "format-ci"
             ]
         },
         {
