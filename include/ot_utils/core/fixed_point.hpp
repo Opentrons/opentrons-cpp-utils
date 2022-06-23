@@ -2,6 +2,9 @@
 
 #include <cstdint>
 
+namespace ot_utils {
+namespace fixed_point {
+
 using sq0_31 = int32_t;  // 0: signed bit,  1-31: fractional bits
 using q31_31 =
     uint64_t;  // 0: overflow bit, 1-32: integer bits, 33-64: fractional bits
@@ -21,3 +24,6 @@ auto convert_to_fixed_point_64_bit(double value, int to_radix) -> sq31_31;
 auto fixed_point_multiply(sq0_31 a, sq0_31 b) -> sq0_31;
 
 auto fixed_point_multiply(sq31_31 a, sq0_31 b) -> sq0_31;
+
+}  // namespace fixed_point
+}  // namespace ot_utils

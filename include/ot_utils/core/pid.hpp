@@ -1,5 +1,7 @@
 #pragma once
 
+namespace ot_utils {
+namespace pid {
 /**
  * @brief Implements a starndard PID controller.
  */
@@ -70,3 +72,6 @@ class PID {
     double _last_iterm;
     IntegratorResetTrigger _reset_trigger = NONE;
 };
+
+}  // namespace pid
+}  // namespace ot_utils

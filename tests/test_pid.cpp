@@ -2,7 +2,9 @@
 #include <vector>
 
 #include "catch2/catch.hpp"
-#include "core/pid.hpp"
+#include "ot_utils/core/pid.hpp"
+
+using namespace ot_utils::pid;
 
 SCENARIO("PID controller") {
     GIVEN("a PID controller initialized with all 0 coeffs") {

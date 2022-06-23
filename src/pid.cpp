@@ -1,7 +1,9 @@
-#include "core/pid.hpp"
+#include "ot_utils/core/pid.hpp"
 
 #include <algorithm>
 #include <limits>
+
+using namespace ot_utils::pid;
 
 PID::PID(double kp, double ki, double kd, double sampletime)
     : PID(kp, ki, kd, sampletime, std::numeric_limits<double>::infinity(),

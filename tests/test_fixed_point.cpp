@@ -1,5 +1,7 @@
 #include "catch2/catch.hpp"
-#include "core/fixed_point.hpp"
+#include "ot_utils/core/fixed_point.hpp"
+
+using namespace ot_utils::fixed_point;
 
 auto convert_to_integer(float f, int conversion) {
     return static_cast<int32_t>(f * static_cast<float>(1LL << conversion));

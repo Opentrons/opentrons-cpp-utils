@@ -55,8 +55,6 @@ list(APPEND CLANG_EXTRA_ARGS "--extra-arg=-Werror=implicit-fallthrough")
 # ancient and doesn't support features we use
 list(APPEND CLANG_EXTRA_ARGS "--extra-arg=-std=gnu++20")
 
-message(INFO "Extra args: ${CLANG_EXTRA_ARGS}")
-
 add_custom_target(lint
     ALL
     COMMENT "Linting"

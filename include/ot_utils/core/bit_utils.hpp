@@ -5,6 +5,7 @@
 #include <span>
 #include <type_traits>
 
+namespace ot_utils {
 namespace bit_utils {
 
 template <typename Iter>
@@ -93,3 +94,4 @@ requires std::is_integral_v<InputIntType> &&
 }
 
 }  // namespace bit_utils
+}  // namespace ot_utils

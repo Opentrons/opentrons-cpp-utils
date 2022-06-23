@@ -2,7 +2,9 @@
 #include <span>
 
 #include "catch2/catch.hpp"
-#include "core/bit_utils.hpp"
+#include "ot_utils/core/bit_utils.hpp"
+
+using namespace ot_utils;
 
 SCENARIO("bytes_to_int works") {
     GIVEN("a 2 byte input") {
