@@ -18,10 +18,15 @@ class FreeRTOSTimer {
      */
     using Callback = std::function<void()>;
     FreeRTOSTimer(const char* name, Callback&& callback, uint32_t period_ms)
+        : FreeRTOSTimer(name, callback, true, period_ms) {}
+
+    FreeRTOSTimer(const char* name, Callback&& callback, bool autoreload,
+                  uint32_t period_ms)
         : callback{std::move(callback)} {
-        timer = xTimerCreateStatic(name, pdMS_TO_TICKS(period_ms), auto_reload,
+        timer = xTimerCreateStatic(name, pdMS_TO_TICKS(period_ms), autoreload,
                                    this, timer_callback, &timer_buffer);
     }
+
     auto operator=(FreeRTOSTimer&) -> FreeRTOSTimer& = delete;
     auto operator=(FreeRTOSTimer&&) -> FreeRTOSTimer&& = delete;
     FreeRTOSTimer(FreeRTOSTimer&) = delete;
@@ -51,11 +56,26 @@ class FreeRTOSTimer {
 
     void stop() { xTimerStop(timer, 1); }
 
+    auto start_from_isr() -> bool {
+        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+        auto ret = xTimerStartFromISR(_timer, &xHigherPriorityTaskWoken);
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-cstyle-cast)
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        return ret == pdPASS;
+    }
+
+    auto stop_from_isr() -> bool {
+        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+        auto ret = xTimerStopFromISR(_timer, &xHigherPriorityTaskWoken);
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-cstyle-cast)
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        return ret == pdPASS;
+    }
+
   private:
     TimerHandle_t timer{};
     Callback callback;
     StaticTimer_t timer_buffer{};
-    UBaseType_t auto_reload = pdTRUE;
 
     static void timer_callback(TimerHandle_t xTimer) {
         auto* timer_id = pvTimerGetTimerID(xTimer);
@@ -65,4 +85,4 @@ class FreeRTOSTimer {
 };
 
 }  // namespace freertos_timer
-}
+}  // namespace ot_utils
