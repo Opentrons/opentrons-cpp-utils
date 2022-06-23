@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Build folders
+stm32-tools/
+build-host/
