@@ -85,4 +85,4 @@ class FreeRTOSCriticalSection {
 };
 
 }  // namespace freertos_synchronization
-}
+}  // namespace ot_utils

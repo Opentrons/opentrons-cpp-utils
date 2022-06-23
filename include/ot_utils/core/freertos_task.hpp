@@ -75,4 +75,4 @@ class FreeRTOSTask {
 };
 
 }  // namespace freertos_task
-}
+}  // namespace ot_utils

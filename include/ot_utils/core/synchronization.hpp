@@ -24,4 +24,4 @@ requires(!std::movable<Lockable> && !std::copyable<Lockable>) class Lock {
 };
 
 }  // namespace synchronization
-}
+}  // namespace ot_utils

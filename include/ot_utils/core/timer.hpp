@@ -20,4 +20,4 @@ concept Timer = requires(TimerType tt, Callback cb) {
         "hello", []() {}, static_cast<uint32_t>(0))};
 };
 };  // namespace timer
-}
+}  // namespace ot_utils

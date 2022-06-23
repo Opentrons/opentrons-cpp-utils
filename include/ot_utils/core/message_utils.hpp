@@ -75,4 +75,4 @@ struct VariantCat<std::variant<VariantAContents...>,
 };
 
 };  // namespace utils
-}; 
+};  // namespace ot_utils
