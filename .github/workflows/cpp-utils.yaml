@@ -23,7 +23,7 @@ defaults:
 jobs:
   compile-test:
     name: 'Compile/Test'
-    runs_on: 'ubuntu-20.04'
+    runs-on: 'ubuntu-20.04'
     timeout-minutes: 10
     env:
       CC: gcc-10
