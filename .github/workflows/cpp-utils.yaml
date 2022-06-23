@@ -47,4 +47,4 @@ jobs:
       - name: 'Lint'
         run: cmake --build --preset lint
       - name: 'Build and Test'
-        run: cmake --build --preset build-and-test
+        run: cmake --build --preset tests
