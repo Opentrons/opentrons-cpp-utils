@@ -7,6 +7,7 @@ add_executable(tests
     test_main.cpp
     test_bit_utils.cpp 
     test_fixed_point.cpp
+    test_message_utils.cpp
     test_pid.cpp
     test_synchronization.cpp
 )
