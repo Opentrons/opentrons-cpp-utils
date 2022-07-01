@@ -18,14 +18,15 @@ class FreeRTOSTimer {
      */
     using Callback = std::function<void()>;
     FreeRTOSTimer(const char* name, Callback&& callback, uint32_t period_ms)
-        : FreeRTOSTimer(name, std::forward<Callback>(callback), true, period_ms) {}
+        : FreeRTOSTimer(name, std::forward<Callback>(callback), true,
+                        period_ms) {}
 
     FreeRTOSTimer(const char* name, Callback&& callback, bool autoreload,
                   uint32_t period_ms)
         : callback{std::move(callback)} {
-        timer = xTimerCreateStatic(name, pdMS_TO_TICKS(period_ms), 
-                                   static_cast<UBaseType_t>(autoreload),
-                                   this, timer_callback, &timer_buffer);
+        timer = xTimerCreateStatic(name, pdMS_TO_TICKS(period_ms),
+                                   static_cast<UBaseType_t>(autoreload), this,
+                                   timer_callback, &timer_buffer);
     }
 
     auto operator=(FreeRTOSTimer&) -> FreeRTOSTimer& = delete;
