@@ -15,11 +15,14 @@ PID::PID(double kp, double ki, double kd, double sampletime,
       _ki(ki),
       _kd(kd),
       _sampletime(sampletime),
-      _sampletime_inv(1.0 / sampletime),
       _windup_limit_high(windup_limit_high),
       _windup_limit_low(windup_limit_low),
       _last_error(0),
-      _last_iterm(0) {}
+      _last_iterm(0) {
+          if (sampletime != 0) {
+              _sampletime_inv = 1.0 / sampletime;
+          } else { _sampletime_inv = 0; }
+      }
 
 auto PID::kp() const -> double { return _kp; }
 
@@ -58,7 +61,9 @@ auto PID::compute(double error) -> double {
 
 auto PID::compute(double error, double sampletime) -> double {
     _sampletime = sampletime;
-    _sampletime_inv = 1.0 / sampletime;
+    if (sampletime != 0) {
+        _sampletime_inv = 1.0 / sampletime;
+    } else { _sampletime_inv = 0;}
     return compute(error);
 }
 
